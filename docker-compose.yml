@@ -1,0 +1,37 @@
+services:
+  banco:
+    image: mysql:8.0
+    container_name: RM562707_banco
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 1234
+      MYSQL_DATABASE: dimdim
+    ports:
+      - "3307:3306"
+    volumes:
+      - volume_RM562707:/var/lib/mysql
+    networks:
+      - rede_RM562707
+
+  app:
+    build: ./app
+    container_name: RM562707_app
+    restart: always
+    environment:
+      DB_HOST: banco
+      DB_USER: root
+      DB_PASSWORD: 1234
+      DB_NAME: dimdim
+    ports:
+      - "3000:3000"
+    depends_on:
+      - banco
+    networks:
+      - rede_RM562707
+
+volumes:
+  volume_RM562707:
+
+networks:
+  rede_RM562707:
+    driver: bridge
