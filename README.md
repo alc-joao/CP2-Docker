@@ -22,3 +22,7 @@ https://github.com/alc-joao/CP2-Docker
 ## Como executar o projeto
 ```bash
 docker compose up -d --build
+curl http://localhost:3000
+
+## Link do Video Explicativo
+https://youtu.be/LoJQx-_UUrk
